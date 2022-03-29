@@ -1,8 +1,39 @@
+<?php
+  include("fonctions.php");
+
+
+  if(isset($_POST["submit"]) && isset($_FILES["cv"]["name"]) && isset($_FILES["coverLetter"]["name"]) )
+  {
+      $url = $api_url."/api/emploiStage"; // url de l'api à récuperer ....
+
+      $cv = $_FILES["cv"]["name"];
+      $coverLetter = $_FILES["coverLetter"]["name"];
+      $tmp_cv = $_FILES["cv"]["tmp_name"];
+      $tmp_coverLetter = $_FILES["coverLetter"]["tmp_name"];
+      $job = $_POST["job"];
+      $region = $_POST["region"];
+
+      $root = "assets/upload/";
+      $upload1 = move_uploaded_file($tmp_cv , $root.$cv);
+      $upload2 = move_uploaded_file($tmp_coverLetter , $root.$coverLetter);
+
+      if($upload1 && $upload2	)
+      {
+          $execution = HandleEmploi($url , $cv , $coverLetter , $job ,  $region);
+
+          echo $execution ;
+      }
+
+  }
+
+  
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="jquery.min.js"></script>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,7 +42,7 @@
 
   <!--FontAwesome-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <title>Financement de Projet</title>
+  <title>Demande d'emploi</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -27,7 +58,7 @@
 -->
 </head>
 
-<body style="background: url('assets/images/Project.jpg') no-repeat center center; -webkit-background-size:cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
+<body style="background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);">
 
   <!-- ***** Preloader Start ***** -->
   <div id="preloader">
@@ -40,10 +71,10 @@
   <!-- ***** Preloader End ***** -->
 
   <!-- Header -->
-  <header class="assets/images/Project.jpg">
+  <header>
     <nav class="navbar navbar-expand-lg">
       <div class="container">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="index.php">
           <h2>Map Jeunesse <i class="fa fa-graduation-cap" aria-hidden="true"><em></em></i> </h2>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -53,21 +84,21 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Accueil
+              <a class="nav-link" href="index.php">Accueil
                 <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="services.html">Nos services</a>
+              <a class="nav-link" href="services.php">Nos services</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="forum.html">Forum</a>
+              <a class="nav-link" href="forum.php">Forum</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="connection.html">LogIn</a>
+              <a class="nav-link" href="connexion.php">LogIn</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
+              <a class="nav-link" href="contact.php">Contact</a>
             </li>
           </ul>
         </div>
@@ -80,26 +111,26 @@
       <div class="row vh-100 align-items-center justify-content-center">
           <div class="col-sm-8 col-md-6 col-lg-4 bg-white rounded p-4 shadow">
               <div class="row justify-content-center mb-4">
-                  <img src="assets/images/ProjectSearch.jpg" class="w-25"/>              
-              </div>
-              <form>
+                 <img src="assets/images/JobSearch.jpg" class="w-50"/>              
+            </div>
+              <form method="post" action="emploi.php" enctype="multipart/form-data" >
                 <div class="mb-4">
-                  <label for="ProjetCV" class="form-label">Domaine</label>
-                  <input type="text" class="form-control" id="ProjetCV"/>
+                  <label for="CV" class="form-label">Inserer votre CV</label>
+                  <input type="file" class="form-control"  id="CV"  name="cv" />
                 </div>
                 <div class="mb-4">
-                  <label for="ProjetLettre" class="form-label">Intitule</label>
-                  <input type="text" class="form-control" id="ProjetLettre"/>
+                  <label for="Lettre" class="form-label">Inserer votre lettre de motivation</label>
+                  <input type="file" class="form-control" id="Lettre" name="coverLetter" />
                 </div>
                 <div class="mb-4">
-                  <label for="PosteEmploi" class="form-label">Votre Projet</label>
-                  <input type="file" class="form-control" id="PosteEmploi"/>
+                  <label for="PosteEmploi" class="form-label">Poste recherche</label>
+                  <input type="text" class="form-control" id="PosteEmploi" name="job"  />
                 </div>
                 <div class="mb-4">
-                  <label for="PosteEmploi" class="form-label">Region </label>
-                  <input type="text" class="form-control" id="PosteEmploi" placeholder="Quelle region pour votre projet?"/>
+                  <label for="PosteEmploi" class="form-label">Region</label>
+                  <input type="text" class="form-control" id="PosteEmploi" placeholder="Quelle region pour un emploi?" name="region" />
                 </div>
-                <button type="submit" class="btn btn-success w-100"> Envoyez </button>
+                <button type="submit" name="submit" class="btn btn-success w-100"> Envoyez </button>
               </form>
               <p class="mb-0 text-center"> Pas encore de compte ? <a class="text-decoration-none" href="inscription.html"> Inscrivez-vous Ici!</a></p>
           </div>

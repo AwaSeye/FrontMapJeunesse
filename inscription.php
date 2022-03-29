@@ -1,3 +1,28 @@
+<?php
+  include("fonctions.php");
+
+
+
+  if(isset($_POST["username"]) || isset($_POST["email"])  || isset($_POST["nom"])  || isset($_POST["prenom"])  || isset($_POST["password"])   )
+  {
+    $url = $api_url."/api/auth/signup" ; // url de l'api à récuperer ....
+    
+    $username = $_POST["username"];
+    $email = $_POST["email"];
+    $nom =  $_POST["nom"];
+    $prenom =  $_POST["prenom"];  
+    $password =  $_POST["password"];
+    $role = ["ROLE_USER"];
+
+    
+ 
+    $response = HandleSignUp($url ,  $username , $email , $nom , $prenom , $password , $role) ;
+
+    echo $response ;
+   } 
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,28 +68,28 @@ https://templatemo.com/tm-551-stand-blog
     <header class="">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand" href="index.html"><h2>Map Jeunesse <i class="fa fa-graduation-cap" aria-hidden="true"><em></em></i></h2></a>
+          <a class="navbar-brand" href="index.php"><h2>Map Jeunesse <i class="fa fa-graduation-cap" aria-hidden="true"><em></em></i></h2></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link" href="accueil.html">ACCUEIL
+                <a class="nav-link" href="index.php">ACCUEIL
                   <span class="sr-only">(current)</span>
                 </a>
               </li> 
               <li class="nav-item">
-                <a class="nav-link" href="services.html">NOS SERVICES</a>
+                <a class="nav-link" href="services.php">NOS SERVICES</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="forum.html">FORUM</a>
+                <a class="nav-link" href="forum.php">FORUM</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="connection.html">LOGIN</a>
+                <a class="nav-link" href="connexion.php">LOGIN</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contact.html">CONTACT</a>
+                <a class="nav-link" href="contact.php">CONTACT</a>
               </li>
             </ul>
           </div>
@@ -75,26 +100,26 @@ https://templatemo.com/tm-551-stand-blog
     
 <br> <br> <br> <br> <br> <br/> 
         <div class ="form-saisie container" style="width: 95%;"> 
-          <form action=""> 
+          <form action="inscription.php" method="POST" > 
             <span class= "identite"> 
               <div class="form-row justify-content-center">
-                <i class="fas fa-user col-lg-3.3"> <input type="text" name ="" placeholder="Prénom"> </i>
-                <i class="fas fa-user col-lg-3.3"> <input type="text" name ="" placeholder="Nom"> </i>
-                <i class="fas fa-user col-lg-3.3"> <input type="text" name ="" placeholder="Age"> </i> 
+                <i class="fas fa-user col-lg-3.3"> <input type="text" name ="prenom" placeholder="Prénom"> </i>
+                <i class="fas fa-user col-lg-3.3"> <input type="text" name ="nom" placeholder="Nom"> </i>
+                <i class="fas fa-user col-lg-3.3"> <input type="text" name ="age" placeholder="Age"> </i> 
               </div>
               <div class="form-row justify-content-center">
                 <i class="fas fa-restroom col-lg-3.3"> 
-                  <select class = "sexe" name="" >
+                  <select class = "sexe" name="sex" >
                     <option value="M"> Masculin </option>
                     <option value="F"> Féminin </option> 
                   </select>
                 </i>    
-                <i class="fas fa-home col-lg-3.3"> <input type="text" name ="" placeholder="Adresse"> </i> 
-                <i class="fas fa-phone-alt col-lg-3.3"> <input type="text" name ="" placeholder="Contact"> </i> 
+                <i class="fas fa-home col-lg-3.3"> <input type="text" name ="adress" placeholder="Adresse"> </i> 
+                <i class="fas fa-phone-alt col-lg-3.3"> <input type="text" name ="contact" placeholder="Contact"> </i> 
               </div>
               <div class="form-row justify-content-center">
                 <i class="fas fa-map-marked-alt col-lg-3.3"> 
-                  <select class = "region " name=""> 
+                  <select class = "region " name="town"> 
                     <option value="Dakar"> Dakar </option>
                     <option value="Diourbel"> Diourbel </option>
                     <option value="Fatick"> Fatick </option>
@@ -111,21 +136,21 @@ https://templatemo.com/tm-551-stand-blog
                     <option value="Tambacounda"> Ziguinchor </option>
                   </select>
                 </i>
-                <i class="far fa-calendar-alt col-lg-3.3"> <input class = "quatre" type="date" name ="" placeholder="Date "> </i> 
+                <i class="far fa-calendar-alt col-lg-3.3"> <input class = "quatre" type="date" name ="birthday" > </i> 
               </div>
               <div class="form-row justify-content-center">
-                <i class="fas fa-map-marker-alt col-lg-5"> <input  class = "quatre" type="text" name ="" placeholder=" Adresse actuelle"> </i> 
-                <i class="fas fa-envelope col-lg-5"> <input class = "quatre" type="text" name ="" placeholder="Mail"> </i> 
+                <i class="fas fa-map-marker-alt col-lg-5"> <input  class = "quatre" type="text" name ="actualAdress" placeholder=" Adresse actuelle"> </i> 
+                <i class="fas fa-envelope col-lg-5"> <input class = "quatre" type="text" name ="email" placeholder="Mail"> </i> 
               </div>
               <div class="form-row justify-content-center">
-                <i class="fas fa-user col-lg-5"> <input class = "quatre" type="text" name ="" placeholder="Nom d'utilisateur"> </i>
-                <i class="fas fa-unlock-alt col-lg-5"> <input class = "quatre" type="password" name ="" placeholder="Mot de passe"> </i> 
+                <i class="fas fa-user col-lg-5"> <input class = "quatre" type="text" name ="username" placeholder="Nom d'utilisateur"> </i>
+                <i class="fas fa-unlock-alt col-lg-5"> <input class = "quatre" type="password" name ="password" placeholder="Mot de passe"> </i> 
               </div> 
               <div class="form-row d-flex justify-content-center">
-                <input type="submit" name= "" value="S'inscrire" class="btnInscris col-lg-3" >    
+                <input type="submit" name= "submit" value="S'inscrire" class="btnInscris col-lg-3" >    
               </div>    
               <div class="form-row d-flex justify-content-center">
-                Vous avez un compte ? <a href="connection.html"> Connectez-vous</a>
+                Vous avez un compte ? <a href="connexion.php"> Connectez-vous</a>
               </div>
           </form>
         </div>

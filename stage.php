@@ -1,3 +1,31 @@
+<?php
+  include("fonctions.php");
+
+  if(isset($_POST["submit"]) && isset($_FILES["cv"]["name"]) && isset($_FILES["coverLetter"]["name"]) )
+  {
+    $url = $api_url."/api/emploiStage"; // url de l'api à récuperer ....
+
+    $cv = $_FILES["cv"]["name"];
+    $coverLetter = $_FILES["coverLetter"]["name"];
+    $tmp_cv = $_FILES["cv"]["tmp_name"];
+    $tmp_coverLetter = $_FILES["coverLetter"]["tmp_name"];
+    $job = $_POST["job"];
+    $region = $_POST["region"];
+
+    $root = "assets/upload/";
+    $upload1 = move_uploaded_file($tmp_cv , $root.$cv);
+    $upload2 = move_uploaded_file($tmp_coverLetter , $root.$coverLetter);
+
+    if($upload1 && $upload2	)
+    {
+        $execution = HandleStage($url , $cv , $coverLetter , $job ,  $region);
+
+        echo $execution ;
+    }
+
+  }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,7 +87,7 @@
   <header class="">
     <nav class="navbar navbar-expand-lg">
       <div class="container">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="index.php">
             <h2>Map Jeunesse <i class="fa fa-graduation-cap" aria-hidden="true"><em></em></i> </h2>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -69,21 +97,21 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Accueil
+              <a class="nav-link" href="index.php">Accueil
                 <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="services.html">Nos services</a>
+              <a class="nav-link active" href="services.php">Nos services</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="forum.html">Forum</a>
+              <a class="nav-link" href="forum.php">Forum</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="connection.html">LogIn</a>
+              <a class="nav-link" href="connexion.php">LogIn</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
+              <a class="nav-link" href="contact.php">Contact</a>
             </li>
           </ul>
         </div>
@@ -95,25 +123,25 @@
   <div class="container">
       <div class="row vh-100 align-items-center justify-content-center">
           <div class="col-sm-8 col-md-6 col-lg-4 rounded p-4 shadow" style="background-color: rgba(0,0,0,0.5)">
-              <form>
+              <form action="stage.php" method="post" enctype="multipart/form-data" >
                 <h3 style="text-align: center; " class="FormTitle text-align-center text-white"> STAGE </h3> <br/>
                 <div class="mb-4">
                   <label for="CV" class="form-label text-white">Inserer votre CV</label>
-                  <input type="file" class="form-control" id="CV"/>
+                  <input type="file" class="form-control" id="CV" name="cv" />
                 </div>
                 <div class="mb-4">
                   <label for="Lettre" class="form-label text-white">Inserer votre lettre de motivation</label>
-                  <input type="file" class="form-control" id="Lettre"/>
+                  <input type="file" class="form-control" id="Lettre" name="coverLetter" />
                 </div>
                 <div class="mb-4">
                   <label for="PosteEmploi" class="form-label text-white">Poste recherche</label>
-                  <input type="text" class="form-control" id="PosteEmploi"/>
+                  <input type="text" class="form-control" id="PosteEmploi" name="job" />
                 </div>
                 <div class="mb-4">
                   <label for="PosteEmploi" class="form-label text-white">Region</label>
-                  <input type="text" class="form-control" id="PosteEmploi" placeholder="Quelle region pour votre stage ?"/>
+                  <input type="text" class="form-control" id="PosteEmploi" placeholder="Quelle region pour votre stage ?" name="region" />
                 </div>
-                <button type="submit" class="btn btn-primary w-100"> Envoyez </button>
+                <button type="submit" class="btn btn-primary w-100" name="submit"> Envoyez </button>
               </form>
               <p class="mb-0 text-center text-white"> Pas encore de compte ? <a class="text-decoration-none text-primary" style="filter: brightness(2); color:blue" href="inscription.html"> Inscrivez-vous Ici!</a></p>
           </div>

@@ -1,3 +1,22 @@
+<?php
+  include("fonctions.php");
+
+  
+
+  if(isset($_POST["submit"]))
+  {
+      $url = $api_url."/api/auth/signin"; // url de l'api à récuperer ....
+      
+      $login = $_POST["login"];
+      $password = $_POST["password"];
+
+      $execution =  HandleLogin($url , $login , $password);
+      echo $execution ;
+
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -76,28 +95,28 @@ https://templatemo.com/tm-551-stand-blog
     <header class="">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand rows" href="index.html"> <h2>Map Jeunesse <i class="fa fa-graduation-cap" aria-hidden="true"><em></em></i> </h2></a>
+          <a class="navbar-brand rows" href="index.php"> <h2>Map Jeunesse <i class="fa fa-graduation-cap" aria-hidden="true"><em></em></i> </h2></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Accueil
+                <a class="nav-link" href="index.php">Accueil
                   <span class="sr-only">(current)</span>
                 </a>
               </li> 
               <li class="nav-item">
-                <a class="nav-link" href="services.html">Nos services</a>
+                <a class="nav-link" href="services.php">Nos services</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="forum.html">Forum</a>
+                <a class="nav-link" href="forum.php">Forum</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="connection.html">LogIn</a>
+                <a class="nav-link active" href="connexion.php">LogIn</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contact.html">Contact</a>
+                <a class="nav-link" href="contact.php">Contact</a>
               </li>
             </ul>
           </div>
@@ -132,25 +151,25 @@ https://templatemo.com/tm-551-stand-blog
         <div class="col-lg-7 px-5 pt-5">
           <h1 class="font-weight-bold py-3">Connexion</h1>
           <h4>Utilisez votre compte svp!</h4><br>
-          <form>
+          <form action = "connexion.php" method="post">
              <div class="row">
                <div class="col-lg-7">
-                  <input type="text" placeholder="Veuillez saisir votre nom d'utilisateur " class="form-control" required>
+                  <input type="text" placeholder="login" class="form-control" name="login" required>
                </div>
              </div>
              <div class="row">
               <div class="col-lg-7"><br>
-                 <input type="password" placeholder="Veuillez saisir votre mot de passe svp" class="form-control" required>
+                 <input type="password" placeholder="mot de passe" class="form-control" name="password" required>
               </div>
              </div>
              <div class="row">
               <div class="col-lg-7"><br>
-                <button type="submit" class="btn1 mt-3 mb-5 w-100">Valider</button>
+                <button type="submit" name="submit" class="btn1 mt-3 mb-5 w-100">Valider</button>
               </div>
              </div>
              <div class="row">
               <a href="#" class="col-lg-7">Mot de passe oublié?</a>
-              <p class="col-lg-7">Vous n'avez pas de compte ? <a href="inscription.html">Inscrivez-vous ici!</a></p></div>
+              <p class="col-lg-7">Vous n'avez pas de compte ? <a href="inscription.php">Inscrivez-vous ici!</a></p></div>
           </form>
         </div>
       </div>
@@ -205,3 +224,4 @@ https://templatemo.com/tm-551-stand-blog
 
   </body>
 </html>
+

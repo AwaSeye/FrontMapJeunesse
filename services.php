@@ -55,28 +55,28 @@ https://templatemo.com/tm-551-stand-blog
     <header class="">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand" href="index.html"> <h2>Map Jeunesse <i class="fa fa-graduation-cap" aria-hidden="true"><em></em></i> </h2> </a>
+          <a class="navbar-brand" href="index.php"> <h2>Map Jeunesse <i class="fa fa-graduation-cap" aria-hidden="true"><em></em></i> </h2> </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Accueil
+                <a class="nav-link" href="index.php">Accueil
                   <span class="sr-only">(current)</span>
                 </a>
               </li> 
               <li class="nav-item">
-                <a class="nav-link active" href="services.html">Nos services</a>
+                <a class="nav-link active" href="services.php">Nos services</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="forum.html">Forum</a>
+                <a class="nav-link" href="forum.php">Forum</a>
               </li>
                <li class="nav-item">
-                 <a class="nav-link" href="connection.html">LogIn</a>
+                 <a class="nav-link" href="connexion.php">LogIn</a>
                </li>
                <li class="nav-item">
-                 <a class="nav-link" href="contact.html">Contact</a>
+                 <a class="nav-link" href="contact.php">Contact</a>
                </li>
             </ul>
           </div>
@@ -117,7 +117,7 @@ https://templatemo.com/tm-551-stand-blog
                     <div class="card-body text-center">
                       <h5 class="card-title"> Offre de Stage</h5>
                       <p class="card-text">Bienvenue dans la page de Candidature de stage. Veuillez cliquez sur le bouton pour continuer</p>
-                      <a href="stage.html" class="btn btn-success"> Consulter </a>
+                      <a href="stage.php" class="btn btn-success"> Consulter </a>
                     </div>
                 </div>
             </div>
@@ -129,7 +129,7 @@ https://templatemo.com/tm-551-stand-blog
                     <div class="card-body text-center">
                       <h5 class="card-title"> Offre d'emploi</h5>
                       <p class="card-text">Bienvenue dans la page de Candidature d'emploi. Veuillez cliquez sur le bouton pour continuer</p>
-                      <a href="emploi.html" class="btn btn-success"> Consulter </a>
+                      <a href="emploi.php" class="btn btn-success"> Consulter </a>
                     </div>
                 </div>
             </div>
@@ -141,7 +141,7 @@ https://templatemo.com/tm-551-stand-blog
                     <div class="card-body text-center">
                       <h5 class="card-title"> Candidature de Projet</h5>
                       <p class="card-text">Bienvenue dans la page de Candidature de projet. Cliquez sur le bouton pour poursuivre</p>
-                      <a href="projet.html" class="btn btn-success"> Consulter </a>
+                      <a href="projet.php" class="btn btn-success"> Consulter </a>
                     </div>
                 </div>
 

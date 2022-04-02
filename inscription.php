@@ -3,7 +3,7 @@
 
 
 
-  if(isset($_POST["username"]) || isset($_POST["email"])  || isset($_POST["nom"])  || isset($_POST["prenom"])  || isset($_POST["password"])   )
+  if(isset($_POST["username"])   ) // || isset($_POST["email"])  || isset($_POST["nom"])  || isset($_POST["prenom"])  || isset($_POST["password"]) 
   {
     $url = $api_url."/api/auth/signup" ; // url de l'api à récuperer ....
     
@@ -11,13 +11,20 @@
     $email = $_POST["email"];
     $nom =  $_POST["nom"];
     $prenom =  $_POST["prenom"];  
+    $age = $_POST["age"];
+    $adresse = $_POST["adresse"];
+    $adresseActuelle = $_POST["adresseActuelle"];
+    $region = $_POST["region"];
+    $sexe = $_POST["sexe"];
+    $dateInscription = $_POST["dateInscription"];
+    $telephone = $_POST["telephone"];
     $password =  $_POST["password"];
     $role = ["ROLE_USER"];
 
     
  
-    $response = HandleSignUp($url ,  $username , $email , $nom , $prenom , $password , $role) ;
-
+    //$response = HandleSignUp($url ,  $username , $email , $nom , $prenom , $password , $role) ;
+    $response = HandleSubscription ($url , $username,$email,$nom , $prenom , $age , $adresse , $adresseActuelle , $region , $sexe , $dateInscription , $telephone , $role , $password);
     echo $response ;
    } 
 
@@ -109,17 +116,17 @@ https://templatemo.com/tm-551-stand-blog
               </div>
               <div class="form-row justify-content-center">
                 <i class="fas fa-restroom col-lg-3.3"> 
-                  <select class = "sexe" name="sex" >
+                  <select class = "sexe" name="sexe" >
                     <option value="M"> Masculin </option>
                     <option value="F"> Féminin </option> 
                   </select>
                 </i>    
-                <i class="fas fa-home col-lg-3.3"> <input type="text" name ="adress" placeholder="Adresse"> </i> 
-                <i class="fas fa-phone-alt col-lg-3.3"> <input type="text" name ="contact" placeholder="Contact"> </i> 
+                <i class="fas fa-home col-lg-3.3"> <input type="text" name ="adresse" placeholder="Adresse"> </i> 
+                <i class="fas fa-phone-alt col-lg-3.3"> <input type="text" name ="telephone" placeholder="Contact"> </i> 
               </div>
               <div class="form-row justify-content-center">
                 <i class="fas fa-map-marked-alt col-lg-3.3"> 
-                  <select class = "region " name="town"> 
+                  <select class = "region " name="region"> 
                     <option value="Dakar"> Dakar </option>
                     <option value="Diourbel"> Diourbel </option>
                     <option value="Fatick"> Fatick </option>
@@ -136,10 +143,10 @@ https://templatemo.com/tm-551-stand-blog
                     <option value="Tambacounda"> Ziguinchor </option>
                   </select>
                 </i>
-                <i class="far fa-calendar-alt col-lg-3.3"> <input class = "quatre" type="date" name ="birthday" > </i> 
+                <i class="far fa-calendar-alt col-lg-3.3"> <input class = "quatre" type="date" name ="dateInscription" > </i> 
               </div>
               <div class="form-row justify-content-center">
-                <i class="fas fa-map-marker-alt col-lg-5"> <input  class = "quatre" type="text" name ="actualAdress" placeholder=" Adresse actuelle"> </i> 
+                <i class="fas fa-map-marker-alt col-lg-5"> <input  class = "quatre" type="text" name ="adresseActuelle" placeholder=" Adresse actuelle"> </i> 
                 <i class="fas fa-envelope col-lg-5"> <input class = "quatre" type="text" name ="email" placeholder="Mail"> </i> 
               </div>
               <div class="form-row justify-content-center">

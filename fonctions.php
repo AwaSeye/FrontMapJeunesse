@@ -101,29 +101,33 @@ function HandleContact($url , $name , $email , $subject , $message)
 }
 
 
-
-function HandleSubscription($url , $firstname , $surname , $age , $sex , $adress , $contact , $town , $birthday , $actualAdress , $email , $username , $password )
+function HandleSubscription($url , $username , $email , $nom , $prenom , $age , $adresse , $adresseActuelle , $region , $sexe , $dateInscription , $telephone , $role , $password )
 {
-    $datas = array ('firstname' => $firstname ,
-                    'surname' => $surname ,
-                    'age' => $age ,
-                    'sex' => $sex ,
-                    'adress' => $adress ,
-                    'contact' => $contact ,
-                    'town' => $town ,
-                    'birthday' => $birthday ,
-                    'actualAdress' => $actualAdress ,
+
+
+    $datas = array( 'username' => $username ,
                     'email' => $email ,
-                    'username' => $username ,
-                    'password' => $password ,
-                    
-                    );
+                    'nom' => $nom ,
+                    'prenom' => $prenom ,
+                    'age' => $age ,
+                    'adresse' => $adresse ,
+                    'adresseActuelle' => $adresseActuelle , 
+                    'region' => $region ,
+                    'sexe' => $sexe ,
+                    'dateInscription' => $dateInscription ,
+                    'telephone' => $telephone ,
+                    'role' => $role ,
+                    'password' => $password  
+                        
+    ) ;
+    
+    $data_json = json_encode($datas);
 
     $curl = curl_init();
     try {
         curl_setopt($curl , CURLOPT_URL , $url);
         curl_setopt($curl , CURLOPT_POST , true );
-        curl_setopt($curl , CURLOPT_POSTFIELDS, http_build_query($datas));
+        curl_setopt($curl , CURLOPT_POSTFIELDS, $data_json);
         curl_setopt($curl , CURLOPT_RETURNTRANSFER , true);
         $response = curl_exec($curl);
         return $response;

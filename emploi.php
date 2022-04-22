@@ -132,7 +132,7 @@
                 </div>
                 <button type="submit" name="submit" class="btn btn-success w-100"> Envoyez </button>
               </form>
-              <p class="mb-0 text-center"> Pas encore de compte ? <a class="text-decoration-none" href="inscription.html"> Inscrivez-vous Ici!</a></p>
+              <p class="mb-0 text-center"> Pas encore de compte ? <a class="text-decoration-none" href="inscription.php"> Inscrivez-vous Ici!</a></p>
           </div>
 
       </div>

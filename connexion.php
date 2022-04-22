@@ -5,7 +5,7 @@
 
   if(isset($_POST["submit"]))
   {
-      $url = $api_url."/api/auth/signin"; // url de l'api à récuperer ....
+      $url = $api_url."/api/signin"; // url de l'api à récuperer ....
       
       $login = $_POST["login"];
       $password = $_POST["password"];

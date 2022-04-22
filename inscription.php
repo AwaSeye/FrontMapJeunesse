@@ -5,7 +5,7 @@
 
   if(isset($_POST["username"])   ) // || isset($_POST["email"])  || isset($_POST["nom"])  || isset($_POST["prenom"])  || isset($_POST["password"]) 
   {
-    $url = $api_url."/api/auth/signup" ; // url de l'api à récuperer ....
+    $url = $api_url."/api/signup" ; // url de l'api à récuperer ....
     
     $username = $_POST["username"];
     $email = $_POST["email"];

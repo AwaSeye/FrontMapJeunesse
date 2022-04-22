@@ -143,7 +143,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary w-100" name="submit"> Envoyez </button>
               </form>
-              <p class="mb-0 text-center text-white"> Pas encore de compte ? <a class="text-decoration-none text-primary" style="filter: brightness(2); color:blue" href="inscription.html"> Inscrivez-vous Ici!</a></p>
+              <p class="mb-0 text-center text-white"> Pas encore de compte ? <a class="text-decoration-none text-primary" style="filter: brightness(2); color:blue" href="inscription.php"> Inscrivez-vous Ici!</a></p>
           </div>
 
       </div>

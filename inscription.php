@@ -1,0 +1,217 @@
+<?php
+
+    include("fonctions.php");
+
+    if(isset($_POST["username"])   ) // || isset($_POST["email"])  || isset($_POST["nom"])  || isset($_POST["prenom"])  || isset($_POST["password"]) 
+    {
+      $url = $api_url."/api/auth/signup" ; // url de l'api à récuperer ....
+      
+      $username = $_POST["username"];
+      $email = $_POST["email"];
+      $nom =  $_POST["nom"];
+      $prenom =  $_POST["prenom"];  
+      $age = $_POST["age"];
+      $adresse = $_POST["adresse"];
+      $adresseActuelle = $_POST["adresseActuelle"];
+      $region = $_POST["region"];
+      $sexe = $_POST["sexe"];
+      $dateInscription = $_POST["dateInscription"];
+      $telephone = $_POST["telephone"];
+      $password =  $_POST["password"];
+      $role = ["ROLE_USER"];
+      
+  
+      //$response = HandleSignUp($url ,  $username , $email , $nom , $prenom , $password , $role) ;
+      $response = HandleSubscription ($url , $username,$email,$nom , $prenom , $age , $adresse , $adresseActuelle , $region , $sexe , $dateInscription , $telephone , $role , $password);
+      ?>
+        <script>
+            alert(<?php $response ?> );
+        </script>
+      <?php
+      //echo  ;
+
+   } 
+
+ 
+
+
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="inscription.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>MapJeunesse</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-stand-blog.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+<!--
+TemplateMo 551 Stand Blog
+https://templatemo.com/tm-551-stand-blog
+-->
+  </head>
+
+  <body style="background: rgb(219, 226, 226);">
+
+    <!-- ***** Preloader Start ***** -->
+    <!--<div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  -->
+    <!-- ***** Preloader End ***** -->
+
+    <!-- Header -->
+    <header class="">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="index.php"><h2>Map Jeunesse <i class="fa fa-graduation-cap" aria-hidden="true"><em></em></i></h2></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index.php">ACCUEIL
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li> 
+              <li class="nav-item">
+                <a class="nav-link" href="services.php">NOS SERVICES</a>
+              </li> 
+              <li class="nav-item">
+                <a class="nav-link" href="forum.php">FORUM</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="connexion.php">LOGIN</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.php">CONTACT</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    
+<br> <br> <br> <br> <br> <br/> 
+        <div class ="form-saisie container" style="width: 95%;"> 
+          <form action="inscription.php" method="POST" > 
+            <span class= "identite"> 
+              <div class="form-row justify-content-center">
+                <i class="fas fa-user col-lg-3.3"> <input type="text" name ="prenom" placeholder="Prénom"> </i>
+                <i class="fas fa-user col-lg-3.3"> <input type="text" name ="nom" placeholder="Nom"> </i>
+                <i class="fas fa-user col-lg-3.3"> <input type="text" name ="age" placeholder="Age"> </i> 
+              </div>
+              <div class="form-row justify-content-center">
+                <i class="fas fa-restroom col-lg-3.3"> 
+                  <select class = "sexe" name="sexe" >
+                    <option value="M"> Masculin </option>
+                    <option value="F"> Féminin </option> 
+                  </select>
+                </i>    
+                <i class="fas fa-home col-lg-3.3"> <input type="text" name ="adresse" placeholder="Adresse"> </i> 
+                <i class="fas fa-phone-alt col-lg-3.3"> <input type="text" name ="telephone" placeholder="Contact"> </i> 
+              </div>
+              <div class="form-row justify-content-center">
+                <i class="fas fa-map-marked-alt col-lg-3.3"> 
+                  <select class = "region " name="region"> 
+                    <option value="Dakar"> Dakar </option>
+                    <option value="Diourbel"> Diourbel </option>
+                    <option value="Fatick"> Fatick </option>
+                    <option value="Kaffrine"> Kaffrine </option>
+                    <option value="Kaolack"> Kaolack </option>
+                    <option value="Kédougou"> Kédougou </option>
+                    <option value="Kolda"> Kolda </option>
+                    <option value="Louga"> Louga </option>
+                    <option value="Matam"> Matam </option>
+                    <option value="Saint-Louis"> Saint-Louis </option>
+                    <option value="Sédhiou"> Sédhiou </option>
+                    <option value="Tambacounda"> Tambacounda </option>
+                    <option value="Thiès"> Thiès </option>
+                    <option value="Tambacounda"> Ziguinchor </option>
+                  </select>
+                </i>
+                <i class="far fa-calendar-alt col-lg-3.3"> <input class = "quatre" type="date" name ="dateInscription" > </i> 
+              </div>
+              <div class="form-row justify-content-center">
+                <i class="fas fa-map-marker-alt col-lg-5"> <input  class = "quatre" type="text" name ="adresseActuelle" placeholder=" Adresse actuelle"> </i> 
+                <i class="fas fa-envelope col-lg-5"> <input class = "quatre" type="text" name ="email" placeholder="Mail"> </i> 
+              </div>
+              <div class="form-row justify-content-center">
+                <i class="fas fa-user col-lg-5"> <input class = "quatre" type="text" name ="username" placeholder="Nom d'utilisateur"> </i>
+                <i class="fas fa-unlock-alt col-lg-5"> <input class = "quatre" type="password" name ="password" placeholder="Mot de passe"> </i> 
+              </div> 
+              <div class="form-row d-flex justify-content-center">
+                <input type="submit" name= "submit" value="S'inscrire" class="btnInscris col-lg-3" >    
+              </div>    
+              <div class="form-row d-flex justify-content-center">
+                Vous avez un compte ? <a href="connexion.php"> Connectez-vous</a>
+              </div>
+          </form>
+        </div>
+   
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <ul class="social-icons">
+              <li><a href="#">Facebook</a></li>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">Behance</a></li>
+              <li><a href="#">Linkedin</a></li>
+              <li><a href="#">Dribbble</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-12">
+            <div class="copyright-text">
+              <p>Copyright 2021 L'EQUIPE</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Additional Scripts -->
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/owl.js"></script>
+    <script src="assets/js/slick.js"></script>
+    <script src="assets/js/isotope.js"></script>
+    <script src="assets/js/accordions.js"></script>
+
+    <script language = "text/Javascript"> 
+      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+      function clearField(t){                   //declaring the array outside of the
+      if(! cleared[t.id]){                      // function makes it static and global
+          cleared[t.id] = 1;  // you could use true and false, but that's more typing
+          t.value='';         // with more chance of typos
+          t.style.color='#fff';
+          }
+      }
+    </script>
+
+  </body>
+</html>

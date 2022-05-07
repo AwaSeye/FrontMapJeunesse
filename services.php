@@ -24,13 +24,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="TemplateMo">
+    <head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
 
     <title>Stand Blog - About Page</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="assets/css/fontawesome.css">
@@ -71,12 +73,12 @@ https://templatemo.com/tm-551-stand-blog
     <!-- Header -->
     <header class="">
       <nav class="navbar navbar-expand-lg">
-        <div class="container">
+        <div class="container" >
           <a class="navbar-brand" href="index.php"> <h2>Map Jeunesse <i class="fa fa-graduation-cap" aria-hidden="true"><em></em></i> </h2> </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
+          <div class="collapse navbar-collapse" id="navbarResponsive"  >
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
                 <a class="nav-link" href="index.php">Accueil
@@ -95,13 +97,31 @@ https://templatemo.com/tm-551-stand-blog
                <li class="nav-item">
                  <a class="nav-link" href="contact.php">Contact</a>
                </li>
-               <li class="nav-item">
-                 <form action="services.php" method="POST" >
-                   <input type="submit" name="submit" value="déconnexion" >
-                 </form>
-                 
-               </li>
+             
             </ul>
+          </div>
+          <div class="dropdown">
+
+                <a style="cursor:pointer" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                  <div   style="display:flex;justify-content:center;align-items:center" >
+                      <i style="font-size:30px" class="fas fa-user-circle" ></i>
+                      &nbsp;<div style="font-style:italic" > <?php echo $_SESSION["username"] ?> </div>
+                  </div>
+                </a>  
+                
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"  >
+                  
+                    <form action="services.php" method="POST" style="display:flex;justify-content:center;align-items:center;width:100%" >
+                      <input type="submit" name="submit" value="Déconnexion" class="btn btn-light mb-3" style="width:100%;border-radius:0px" >
+                    </form>
+                  
+                </div>
+
+              <!--
+                
+              -->
+             
+          
           </div>
         </div>
       </nav>

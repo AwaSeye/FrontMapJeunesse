@@ -24,6 +24,7 @@
     else
     {
         $_SESSION["connected"] = "connected";
+        $_SESSION["username"] =  $array["username"];
         header("location: services.php");
     }
  

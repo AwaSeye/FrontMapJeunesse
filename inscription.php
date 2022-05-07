@@ -1,47 +1,15 @@
-<?php
 
-    include("fonctions.php");
-
-    if(isset($_POST["username"])   ) // || isset($_POST["email"])  || isset($_POST["nom"])  || isset($_POST["prenom"])  || isset($_POST["password"]) 
-    {
-      $url = $api_url."/api/auth/signup" ; // url de l'api à récuperer ....
-      
-      $username = $_POST["username"];
-      $email = $_POST["email"];
-      $nom =  $_POST["nom"];
-      $prenom =  $_POST["prenom"];  
-      $age = $_POST["age"];
-      $adresse = $_POST["adresse"];
-      $adresseActuelle = $_POST["adresseActuelle"];
-      $region = $_POST["region"];
-      $sexe = $_POST["sexe"];
-      $dateInscription = $_POST["dateInscription"];
-      $telephone = $_POST["telephone"];
-      $password =  $_POST["password"];
-      $role = ["ROLE_USER"];
-      
-  
-      //$response = HandleSignUp($url ,  $username , $email , $nom , $prenom , $password , $role) ;
-      $response = HandleSubscription ($url , $username,$email,$nom , $prenom , $age , $adresse , $adresseActuelle , $region , $sexe , $dateInscription , $telephone , $role , $password);
-      ?>
-        <script>
-            alert(<?php $response ?> );
-        </script>
-      <?php
-      //echo  ;
-
-   } 
-
- 
-
-
-?>
 
 
 <!DOCTYPE html>
 <html lang="en">
 
   <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -190,12 +158,7 @@ https://templatemo.com/tm-551-stand-blog
         </div>
       </div>
     </footer>
-
-
-   <!--Modal-->
-
-
-
+  
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -217,6 +180,61 @@ https://templatemo.com/tm-551-stand-blog
           }
       }
     </script>
-
+ 
   </body>
 </html>
+
+<?php
+
+    include("fonctions.php");
+
+    if(isset($_POST["username"])   ) // || isset($_POST["email"])  || isset($_POST["nom"])  || isset($_POST["prenom"])  || isset($_POST["password"]) 
+    {
+      $url = $api_url."/api/auth/signup" ; // url de l'api à récuperer ....
+      
+      $username = $_POST["username"];
+      $email = $_POST["email"];
+      $nom =  $_POST["nom"];
+      $prenom =  $_POST["prenom"];  
+      $age = $_POST["age"];
+      $adresse = $_POST["adresse"];
+      $adresseActuelle = $_POST["adresseActuelle"];
+      $region = $_POST["region"];
+      $sexe = $_POST["sexe"];
+      $dateInscription = $_POST["dateInscription"];
+      $telephone = $_POST["telephone"];
+      $password =  $_POST["password"];
+      $role = ["ROLE_USER"];
+      
+  
+      //$response = HandleSignUp($url ,  $username , $email , $nom , $prenom , $password , $role) ;
+      $execution = HandleSubscription ($url , $username,$email,$nom , $prenom , $age , $adresse , $adresseActuelle , $region , $sexe , $dateInscription , $telephone , $role , $password);
+      $response = json_decode($execution , true );
+
+      if ($response["message"] == "User registered successfully!") {
+        ?>
+              <script> 
+                Swal.fire(
+                  ' Votre inscription a été un succès!',
+                  'Cliquez sur le bouton!',
+                  'success'
+                )
+            </script>
+        <?php
+      }
+      else {
+        ?>
+              <script> 
+                Swal.fire(
+                  '<?php echo $response["message"]; ?>',
+                  'Retry !',
+                  'error'
+                )
+            </script>
+        <?php
+      } 
+
+    }
+
+
+?>

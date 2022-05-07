@@ -16,9 +16,9 @@
  
     if ($array["status"] == "401") {
       ?>
-      <script>
-            alert("Login et/ou mots de passe incorrects");
-      </script>
+        <script>
+              alert("Login et/ou mots de passe incorrects");
+        </script>
       <?php
     }
     else

@@ -11,16 +11,14 @@
      
       $domain = $_POST["domain"];
       $title = $_POST["title"];
-      //$region = $_POST["region"];
-      //$date = date("Y-m-d h:i:s ", time());
-      $date = "2022-05-05T13:11:25.270Z";
+      $region = $_POST["region"];
 
       $root = "assets/upload/";
       $upload = move_uploaded_file($tmp_project , $root.$project);
 
       if($upload	)
       {
-          $execution = HandleProject($url , $domain , $title , $project ,  $date);
+          $execution = HandleProject($url , $domain , $title , $project ,  $region);
 
           echo $execution ;
       }
@@ -126,8 +124,23 @@
                   <input type="file" class="form-control" id="PosteEmploi" name="project" />
                 </div>
                 <div class="mb-4">
-                  <label for="PosteEmploi" class="form-label">Region </label>
-                  <input type="text" class="form-control" id="PosteEmploi" placeholder="Quelle region pour votre projet?" name="region" disabled />
+                  <label for="region" class="form-label">Region</label>
+                  <select id="region" class="form-control" name="region"> 
+                      <option value="Dakar"> Dakar </option>
+                      <option value="Diourbel"> Diourbel </option>
+                      <option value="Fatick"> Fatick </option>
+                      <option value="Kaffrine"> Kaffrine </option>
+                      <option value="Kaolack"> Kaolack </option>
+                      <option value="Kédougou"> Kédougou </option>
+                      <option value="Kolda"> Kolda </option>
+                      <option value="Louga"> Louga </option>
+                      <option value="Matam"> Matam </option>
+                      <option value="Saint-Louis"> Saint-Louis </option>
+                      <option value="Sédhiou"> Sédhiou </option>
+                      <option value="Tambacounda"> Tambacounda </option>
+                      <option value="Thiès"> Thiès </option>
+                      <option value="Tambacounda"> Ziguinchor </option>
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-success w-100" name="submit" > Envoyez </button>
               </form>

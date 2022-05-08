@@ -3,7 +3,7 @@
 
   if(isset($_POST["submit"]) && isset($_FILES["cv"]["name"]) && isset($_FILES["coverLetter"]["name"]) )
   {
-    $url = $api_url."/api/emploiStage"; // url de l'api à récuperer ....
+    $url = $api_url."/api/demandeEmploiStage"; // url de l'api à récuperer ....
 
     $cv = $_FILES["cv"]["name"];
     $coverLetter = $_FILES["coverLetter"]["name"];
@@ -11,6 +11,7 @@
     $tmp_coverLetter = $_FILES["coverLetter"]["tmp_name"];
     $job = $_POST["job"];
     $region = $_POST["region"];
+    $domain = $_POST["domain"];
 
     $root = "assets/upload/";
     $upload1 = move_uploaded_file($tmp_cv , $root.$cv);
@@ -18,7 +19,7 @@
 
     if($upload1 && $upload2	)
     {
-        $execution = HandleStage($url , $cv , $coverLetter , $job ,  $region);
+        $execution = HandleStage($url , $cv , $coverLetter , $job , $domain ,  $region);
 
         echo $execution ;
     }
@@ -134,16 +135,35 @@
                   <input type="file" class="form-control" id="Lettre" name="coverLetter" />
                 </div>
                 <div class="mb-4">
-                  <label for="PosteEmploi" class="form-label text-white">Poste recherche</label>
-                  <input type="text" class="form-control" id="PosteEmploi" name="job" />
+                  <label for="Profession" class="form-label">Votre domaine</label>
+                  <input type="text" class="form-control" id="Profession" name="domain"  />
                 </div>
                 <div class="mb-4">
-                  <label for="PosteEmploi" class="form-label text-white">Region</label>
-                  <input type="text" class="form-control" id="PosteEmploi" placeholder="Quelle region pour votre stage ?" name="region" />
+                  <label for="Profession" class="form-label">Profession</label>
+                  <input type="text" class="form-control" id="Profession" name="job"  />
+                </div>
+                <div class="mb-4">
+                  <label for="region" class="form-label">Region</label>
+                  <select id="region" class="form-control" name="region"> 
+                      <option value="Dakar"> Dakar </option>
+                      <option value="Diourbel"> Diourbel </option>
+                      <option value="Fatick"> Fatick </option>
+                      <option value="Kaffrine"> Kaffrine </option>
+                      <option value="Kaolack"> Kaolack </option>
+                      <option value="Kédougou"> Kédougou </option>
+                      <option value="Kolda"> Kolda </option>
+                      <option value="Louga"> Louga </option>
+                      <option value="Matam"> Matam </option>
+                      <option value="Saint-Louis"> Saint-Louis </option>
+                      <option value="Sédhiou"> Sédhiou </option>
+                      <option value="Tambacounda"> Tambacounda </option>
+                      <option value="Thiès"> Thiès </option>
+                      <option value="Tambacounda"> Ziguinchor </option>
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-primary w-100" name="submit"> Envoyez </button>
               </form>
-              <p class="mb-0 text-center text-white"> Pas encore de compte ? <a class="text-decoration-none text-primary" style="filter: brightness(2); color:blue" href="inscription.html"> Inscrivez-vous Ici!</a></p>
+            <!--  <p class="mb-0 text-center text-white"> Pas encore de compte ? <a class="text-decoration-none text-primary" style="filter: brightness(2); color:blue" href="inscription.html"> Inscrivez-vous Ici!</a></p> -->
           </div>
 
       </div>

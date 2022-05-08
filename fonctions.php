@@ -44,42 +44,6 @@ function HandleLogin($url , $username , $password )
 }
 
 
-/*function HandleSignUp($url , $username , $email , $nom , $prenom , $password , $role )
-{
-    $datas = array ('username' => $username ,
-                    'email' => $email ,
-                    'nom' => $nom ,
-                    'prenom' => $prenom ,
-                    'password' => $password , 
-                    'roles' => $role
-                    ); 
-
-        $data_json = json_encode($datas);
-                    
-    $curl = curl_init();
-    try {
-        curl_setopt($curl , CURLOPT_URL , $url);
-        curl_setopt($curl , CURLOPT_POST , true );
-        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-        curl_setopt($curl , CURLOPT_POSTFIELDS,  $data_json);
-       //
-        curl_setopt($curl , CURLOPT_RETURNTRANSFER , true);
-        $response = curl_exec($curl);
-
-        
-        return $response;
-       
-        
-    } catch (\Throwable $th) {
-        throw $th;
-    }
-
-    finally{
-        curl_close($curl);
-    }
-    
-} */
-
 
 function HandleContact($url , $name , $email , $subject , $message)
 {
@@ -155,19 +119,24 @@ function HandleSubscription($url , $username , $email , $nom , $prenom , $age , 
 }
 
 
-function HandleEmploi($url , $cv , $coverLetter , $job , $region)
+function HandleEmploi($url , $cv , $coverLetter , $job , $domain , $region)
 {
+    $headers = array(   "Accept-Encoding: gzip",
+        "Content-Type: application/json"
+    );
     $datas = array ('cv' => $cv ,
-                        'coverLetter' => $coverLetter ,
-                        'job' => $job ,
-                        'region' => $region 
-                        );
-
+                    'lettreMotivation' => $coverLetter ,
+                    'profession' => $job ,
+                    'domaine' => $domain ,
+                    'region' => $region 
+                    );
+    $data_json = json_encode($datas);
     $curl = curl_init();
     try {
+        curl_setopt($curl , CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl , CURLOPT_URL , $url);
         curl_setopt($curl , CURLOPT_POST , true );
-        curl_setopt($curl , CURLOPT_POSTFIELDS, http_build_query($datas));
+        curl_setopt($curl , CURLOPT_POSTFIELDS,  $data_json);
         curl_setopt($curl , CURLOPT_RETURNTRANSFER , true);
         $response = curl_exec($curl);
         return $response;
@@ -183,7 +152,7 @@ function HandleEmploi($url , $cv , $coverLetter , $job , $region)
 }
 
 
-function HandleStage($url , $cv , $coverLetter , $job , $region)
+function HandleStage($url , $cv , $coverLetter , $job , $domain , $region)
 {
 
     $headers = array(   "Accept-Encoding: gzip",
@@ -192,8 +161,9 @@ function HandleStage($url , $cv , $coverLetter , $job , $region)
 
     $datas = array (
                         'cv' => $cv ,
-                        'coverLetter' => $coverLetter ,
-                        'job' => $job ,
+                        'lettreMotivation' => $coverLetter ,
+                        'profession' => $job ,
+                        'domaine' => $domain ,
                         'region' => $region 
                     );
 
@@ -220,18 +190,17 @@ function HandleStage($url , $cv , $coverLetter , $job , $region)
 }
 
 
-function HandleProject($url , $domain , $title , $project , $date)
+function HandleProject($url , $domain , $title , $project , $region)
 {
     $headers = array(   "Accept-Encoding: gzip",
                         "Content-Type: application/json" ,
-                        "Authorization: Bearer"
                     );
                     
     $datas = array (    
                         'domaineActivite' => $domain ,
-                        'titre' => $title,
+                        'intitule' => $title,
                         'contenu' => $project ,
-                        'dateDepot' => $date 
+                        'region' => $region 
                     );
     
     $data_json = json_encode($datas);

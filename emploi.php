@@ -20,7 +20,7 @@
 
       if($upload1 && $upload2	)
       {
-          $execution = HandleEmploi($url , $cv , $coverLetter , $job , $domain ,  $region);
+          $execution = HandleEmploi($url , $cv , $coverLetter , $domain , $job  ,  $region);
 
           echo $execution ;
       }

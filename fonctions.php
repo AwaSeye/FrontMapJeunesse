@@ -119,15 +119,16 @@ function HandleSubscription($url , $username , $email , $nom , $prenom , $age , 
 }
 
 
-function HandleEmploi($url , $cv , $coverLetter , $job , $domain , $region)
+function HandleEmploi($url , $cv , $coverLetter , $domain , $job , $region)
 {
     $headers = array(   "Accept-Encoding: gzip",
-        "Content-Type: application/json"
+        "Content-Type: application/json",
+        "Authorization: Bearer"
     );
     $datas = array ('cv' => $cv ,
                     'lettreMotivation' => $coverLetter ,
-                    'profession' => $job ,
                     'domaine' => $domain ,
+                    'profession' => $job ,
                     'region' => $region 
                     );
     $data_json = json_encode($datas);
@@ -152,18 +153,19 @@ function HandleEmploi($url , $cv , $coverLetter , $job , $domain , $region)
 }
 
 
-function HandleStage($url , $cv , $coverLetter , $job , $domain , $region)
+function HandleStage($url , $cv , $coverLetter , $domain , $job  , $region)
 {
 
     $headers = array(   "Accept-Encoding: gzip",
-                        "Content-Type: application/json"
+                        "Content-Type: application/json",
+                        "Authorization: Bearer"
                     );
 
     $datas = array (
                         'cv' => $cv ,
                         'lettreMotivation' => $coverLetter ,
-                        'profession' => $job ,
                         'domaine' => $domain ,
+                        'profession' => $job ,
                         'region' => $region 
                     );
 
@@ -194,6 +196,7 @@ function HandleProject($url , $domain , $title , $project , $region)
 {
     $headers = array(   "Accept-Encoding: gzip",
                         "Content-Type: application/json" ,
+                        "Authorization: Bearer"
                     );
                     
     $datas = array (    

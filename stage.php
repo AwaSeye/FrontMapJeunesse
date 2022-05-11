@@ -19,7 +19,7 @@
 
     if($upload1 && $upload2	)
     {
-        $execution = HandleStage($url , $cv , $coverLetter , $job , $domain ,  $region);
+        $execution = HandleStage($url , $cv , $coverLetter , $domain , $job  ,  $region);
 
         echo $execution ;
     }
